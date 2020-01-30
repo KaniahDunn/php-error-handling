@@ -6,6 +6,14 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $uid = $_POST['uid'];
     $pwd = $_POST['pwd'];
+
+    if(empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)){
+        header("Location: ../index.php?signup=empty")
+    }else{
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            header("Location: ../index.php?signup=invalidemail");
+        }
+    }
 }else{
-    header("Location: ../index.php?signup=error");
+    echo "Sign up the user!"
 }
